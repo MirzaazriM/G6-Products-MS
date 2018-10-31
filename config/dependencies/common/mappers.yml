@@ -1,0 +1,17 @@
+services:
+
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+
+    Model\Mapper\ProductsMapper:
+        factory: Component\MapperFactory:create
+        arguments:
+            - 'Model\Mapper\ProductsMapper'
+
+    Model\Mapper\MonologMapper:
+        factory: Component\MapperFactory:create
+        arguments:
+        - 'Model\Mapper\MonologMapper'
