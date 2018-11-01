@@ -26,7 +26,7 @@ class ProductsService
         $this->monolog = new Logger('monolog');
         $this->cacheHandler = new CachingHandler();
 
-        \Stripe\Stripe::setApiKey("sk_live_ptCDCVJSQfrlzeBXuUZAR9ol");
+        \Stripe\Stripe::setApiKey("sk_test_8BxTOeXo8UnKVVqmtt0IG6sf");
     }
 
 
@@ -74,21 +74,10 @@ class ProductsService
             $quantity = $quantity['inventory']['quantity'];
             $convertedData['dimensions']['sku_quantity'] = $quantity;
 
-           // die(print_r($convertedData));
-            // call Supplements MS for supplements data
-//            $client = new \GuzzleHttp\Client();
-//            $result = $client->request('GET', $this->configuration['supplements_url'] . '/supplements/ids?ids=' . $ids, []);
-//            $supplements = $result->getBody()->getContents();
-
             // call Tags MS for supplements data
             $client = new \GuzzleHttp\Client();
             $result = $client->request('GET', $this->configuration['tags_url'] . '/tags/ids?ids=' . implode(',', $convertedData['tags']), []);
             $convertedData['tags'] = json_decode($result->getBody()->getContents());
-
-          //  die(print_r($convertedData));
-            // get microservices data using MicroservicesCommunicator object
-//            $communicator = new MicroservicesCommunicator($convertedData, $this->configuration);
-//            $convertedData = $communicator->integrateMicroservicesData();
 
             // check data and set appropriate response
             if(!empty($convertedData)){
@@ -331,7 +320,7 @@ class ProductsService
             // create response object
             $response = new ResponseBootstrap();
 
-            \Stripe\Stripe::setApiKey("sk_live_ptCDCVJSQfrlzeBXuUZAR9ol"); // sk_live_ptCDCVJSQfrlzeBXuUZAR9ol  sk_test_8BxTOeXo8UnKVVqmtt0IG6sf
+            \Stripe\Stripe::setApiKey("sk_test_8BxTOeXo8UnKVVqmtt0IG6sf");
 
             // update product name
             $product = \Stripe\Product::retrieve($productId);
@@ -418,7 +407,7 @@ class ProductsService
             // create response object
             $response = new ResponseBootstrap();
 
-            \Stripe\Stripe::setApiKey("sk_live_ptCDCVJSQfrlzeBXuUZAR9ol");
+            \Stripe\Stripe::setApiKey("sk_test_8BxTOeXo8UnKVVqmtt0IG6sf");
 
             // create entity and set its values
             $entity = new Product();
@@ -482,7 +471,7 @@ class ProductsService
             // create response object
             $response = new ResponseBootstrap();
 
-            \Stripe\Stripe::setApiKey("sk_live_ptCDCVJSQfrlzeBXuUZAR9ol");
+            \Stripe\Stripe::setApiKey("sk_test_8BxTOeXo8UnKVVqmtt0IG6sf");
 
             $pr = \Stripe\Product::create(array(
                 "name" => $name,
